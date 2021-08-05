@@ -1,0 +1,44 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+<div class="container">
+    <table class="table container">
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>PartOfSpeech </th>
+                <th>Definitions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <button>
+        <a href="index.html">Go Back</a>
+    </button>
+</div>
+<script>
+    var data = JSON.parse(localStorage.getItem("apidata"))
+    data[0].meanings.forEach((info, i) => {
+        var myTr = document.createElement("tr")
+        var myTd = document.createElement("td")
+        myTd.innerHTML = i + 1
+        var myTd2 = document.createElement("td")
+        myTd2.innerHTML = info.partOfSpeech
+        var myTd3 = document.createElement("td")
+        var details = ""
+        info.definitions.forEach(data => {
+            console.log(data)
+            for (a in data) {
+                details = details + a + " : " + data[a] + "<br>"
+            }
+        })
+        myTd3.innerHTML = details
+        myTr.appendChild(myTd)
+        myTr.appendChild(myTd2)
+        myTr.appendChild(myTd3)
+
+        document.querySelector("tbody").appendChild(myTr)
+    })
+</script>

@@ -1,0 +1,45 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+<div class="container">
+    <table class="table container">
+        <thead>
+            <tr>
+                <th>Sl No</th>
+                <th>Text</th>
+                <th>Audio </th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <button>
+        <a href="index.html">Go Back</a>
+    </button>
+</div>
+<script>
+    var data = JSON.parse(localStorage.getItem("apidata"))
+    data[0].phonetics.forEach((info, i) => {
+        console.log(info)
+        var myTr = document.createElement("tr")
+
+        var myTd = document.createElement("td")
+        var myTd1 = document.createElement("td")
+        var myTd2 = document.createElement("td")
+
+        myTd.innerHTML = i + 1
+        myTr.appendChild(myTd)
+
+        myTd1.innerHTML = info.text
+        myTr.appendChild(myTd1)
+
+        var anch = document.createElement("a")
+        anch.setAttribute("href", info.audio)
+        anch.innerHTML = info.audio
+        myTd2.appendChild(anch)
+        myTr.appendChild(myTd2)
+
+        document.querySelector("tbody").appendChild(myTr)
+    })
+</script>
